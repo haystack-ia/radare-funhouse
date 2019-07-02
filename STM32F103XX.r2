@@ -24,6 +24,9 @@ s 0x8000000
 #Show offsets in disasm prefixed with section/map name
 e asm.section.sub = true
 
+#keep aav out of our functions
+e anal.vinfun = false
+
 #allocate SRAM section
 #on: map raw file @ address
 on malloc://512M 0x20000000 rw
@@ -123,5 +126,5 @@ f DUMMY @ 0xE000ED42
 f DUMMY2 @ 0xA0001000
 
 ?e running autoanalysis
-aa; aac; aap; aar; aae
+aaaa
 ?e Done!
