@@ -17,7 +17,6 @@ def rename_stubs(r, f):
 
     #if name starts with 'sym.imp' it's already been named
     if f['name'].startswith('sym.imp'):
-        r.cmd('?e Don\'t need to rename {}'.format(f['name']))
         return
 
     #setup analysis
@@ -42,7 +41,7 @@ def rename_stubs(r, f):
 
     flag = [f for f in r.cmdj('fj') if f['offset'] == reloc_addr]
     if len(flag) < 1:
-        r.cmd("?e no reloc found @ {}".format(hex(reloc_addr)))
+        print("no reloc found @ {} in function {}".format(hex(reloc_addr), f['name']))
     else:
         fname = flag[0]['name'][6:]
         r.cmd('afn sym.imp.{}'.format(fname))
@@ -66,7 +65,7 @@ sections = r.cmdj('iSj')
 #assume there's only one
 plts = [s for s in sections if s['name']=='.plt']
 if len(plts) < 1:
-    r.cmd('?e no .plt section found.')
+    print('no .plt section found.')
     exit()
 else:
     plt = plts[0]
