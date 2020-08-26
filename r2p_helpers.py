@@ -28,8 +28,8 @@ def must_have_r2pipe_arg(func):
     '''
     def must_have_r2pipe_arg_wrapper(*args, **kwargs):
 
-        r2pipe_types = [r2pipe.open_sync.open,
-                        r2pipe.open_sync.open]
+        #might have to account for other types
+        r2pipe_types = [r2pipe.open_sync.open]
 
         r2pipe_arg = None
         for a in args:
